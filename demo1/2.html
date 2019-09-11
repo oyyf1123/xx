@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 class="app">
+    {{a}}--{{b}}
+  </h1>
+</body>
+<script>
+  let data = {
+    a: 'oyyf',
+    b: 'ouyang'
+  }
+  let app = new Vue({
+    el: '.app',
+    data: data
+  })
+
+  app.$watch('a',(newVal,oldVal)=>{
+    console.log(newVal,oldVal);
+  })
+  app.$watch('b',(newVal,oldVal)=>{
+    console.log(newVal,oldVal);
+  })
+  data.a = 'yyf';
+  data.b = 'ouyangyifengyifeng';
+  // data.c = 'hahaha'   //之前没有声明，会报错！
+</script>
+
+</html>
