@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  div{
+    text-align: center;
+  }
+  p{
+    margin: 0 auto;
+  }
+  .size{
+    width: 200px;
+    height: 200px;
+  }
+  .big{
+    width: 300px;
+    height: 300px;
+    border: 5px solid black;
+  }
+  .bg{
+    background: red;
+  }
+  .bg1{
+    background: skyblue;
+  }
+</style>
+<body>
+  <div id="app">
+    <!-- <input type="text" v-model = 'flag'> <br> -->
+    <input type="text" v-model = 'bg'> <br>
+    <input type="text" v-model = 'size'> <br>
+    <h3> 以对象的形式添加class </h3>
+    <p :class = "{size : true,bg : true}" >1</p>  //  class 名 true 代表增加
+    <br>
+    <p :class = "{size : flag,bg : 5 > 3}" >2</p>  //  false 代表不加   写法也不拘泥一种 只要最后返回的是布尔值 就可以使用
+    <br>
+    <p :class = '{[size]:true,[bg]:true}'>3</p>  // 用[]去表示key值。 可以通过修改data操作key
+    <br>
+    <h3> 以数组的形式添加class </h3>
+    <p :class = "['size','bg']">4</p> <br>  //  在数组中加值，代表添加class类名
+    <p :class = "[size,bg]">5</p> <br>   // 变量，可以通过改变data来操作
+    <p :class = "[size, flag && 'bg' || bg]">6</p>  //一样可以运动逻辑运算法操作
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      flag:true,
+      size:'size',
+      bg:'bg'
+    }
+  })
+</script>
+</html>
