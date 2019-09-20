@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h3> 点击加减计数 </h3>
+    <button @click = 'minus'>-</button>
+    <button @click = 'add'>+</button>
+    <span>{{num}}</span>
+    <br><hr>
+    <h3> 输入自动算和 </h3>
+    <input type="text" v-model = 'm'>
+    <input type="text" v-model = 'n'>
+    <button @click = 'sum(m,n)'>=</button>
+    <span>{{count}}</span>
+    <br><hr>
+    <h3> 输出事件对象--如果一个事件中它需要两个以上参数，其中一个参数要求是事件对象 -- 事件对象使用$event </h3>
+    <button @click = 'fn($event,10)'>事件对象</button>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      num:0,
+      m:0,
+      n:0,
+      count:0
+    },
+    methods:{
+      add () {
+        this.num++
+      },
+      minus () {
+        this.num--
+      },
+      sum ( a , b) {
+        this.count = (~~a + ~~b)
+      },
+      fn (e ,num) {
+        console.log('e',e);
+        console.log('num',num);
+      }
+    }
+  })
+</script>
+</html>

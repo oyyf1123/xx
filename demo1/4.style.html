@@ -1,23 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+<style>
+  div {
+    text-align: center;
+  }
+
+  p {
+    margin: 0 auto;
+  }
+</style>
+
 <body>
   <div id="app">
+    <h3> 绑定对象 </h3>
+    <p :style="{
+      width:'100px',
+      height:'100px',
+      background:'red'
+    }">1</p> <br>
+    <p :style="style"></p> // 链接到data的style的值
+    <hr>
+    <p :style="5 > 3 && style"></p> // 也可以加一些条件语句
+    <hr>
+    <h3> 绑定数组 </h3>
+    <p :style = "[size,bg]"></p>  // 绑定数组可以添加多个你想添加的
+    <hr>
+    <p :style = "[{
+      width:'150px',
+      height:'150px'
+    },{
+      border:'1px solid rgb(265,189,17)',    
+    },{ 
+      background:'skyblue'
+    }]"></p>    // 也可以这样自己绑定添加，但是会显得太过于臃肿
 
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
   new Vue({
-    el:'#app',
-    data:{
-      
+    el: '#app',
+    data: {
+      style: {
+        width: '100px',
+        height: '100px',
+        background: 'blue',
+        border: '1px solid black'
+      },
+      size: {
+        width: '200px',
+        height: '200px'
+      },
+      bg: {
+        background: 'yellow'
+      }
     }
   })
 </script>
+
 </html>
