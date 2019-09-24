@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click='heihei'>heihei</button>
+    <button @click='haha'>haha</button>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="./minxin.js"></script>
+<script>
+  /* 
+        通过mixins引入分离的选项，我们把这种形式称之为 ‘局部混入’
+    */
+
+  new Vue({
+    el: '#app',
+    mixins: [mixin]
+  })
+</script>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button @click = 'heihei'>heihei</button>
+    <button @click = 'haha'>haha</button>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  //  设置一个Vue.mixin属性  可以影响所创建的每一个Vue实例
+  Vue.mixin({
+    methods:{
+      heihei (){
+        alert ('heihei')
+      },
+      haha (){
+        alert ('haha')
+      }
+    }
+  })
+
+  new Vue({
+    el:'#app',
+    data:{
+
+    }
+  })
+</script>
+</html>
