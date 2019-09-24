@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>备忘录</title>
+  <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+  <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+  <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<style>
+  .icon-check {
+    width: 30px;
+    height: 30px;
+
+    color: green;
+
+    border: 1px solid green;
+    border-radius: 7px;
+    text-align: center;
+    line-height: 30px;
+  }
+
+  .heihei {
+    color: white;
+    background: green;
+  }
+
+  .maskBox {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    height: 100%;
+    width: 100%;
+
+    background: rgba(0, 0, 0, .5);
+    z-index: 99999;
+  }
+
+  .confirm {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    margin: auto;
+
+    width: 80%;
+    height: 115px;
+
+    background: white;
+
+    padding: 10px;
+
+    border-radius: 10px;
+  }
+</style>
+
+<body>
+  <!-- page集合的容器，里面放多个平行的.page，其他.page作为内联页面由路由控制展示 -->
+  <div class="page-group" id="app">
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page">
+      <!-- 标题栏 -->
+      <header class="bar bar-nav">
+        <a class="icon icon-edit pull-right open-panel" @click.self='changeInput'></a>
+        <a class="icon icon-star pull-left open-panel"></a>
+        <h1 class="title">备忘录</h1>
+      </header>
+
+
+      <!-- 这里是页面内容区 -->
+      <!-- <div class="content">
+
+        <div class="card" v-for='(item,index) in todos' :key = 'item.id'>
+          <div class="card-header">{{item.task}}</div>
+          <div class="card-content">
+            <div class="card-content-inner">{{item.content}}</div>
+          </div>
+          <div class="card-footer">
+            <span class="icon icon-check" :class="{'heihei':item.flag}" @click='changeFlag(index)'></span>
+            <span class="timer" >{{item.time}}</span>
+            <span class="icon icon-remove" @click='del(index)'></span>
+          </div>
+        </div>
+      </div> -->
+
+
+
+
+      <div class="content">
+        <div class="buttons-tab">
+          <a href="#tab1" class="tab-link active button">备忘录</a>
+          <a href="#tab2" class="tab-link button">历史记录</a>
+        </div>
+        <div class="content-block">
+          <div class="tabs">
+            <div id="tab1" class="tab active">
+              <div class="content-block">
+                  <!-- 备忘录  -->
+
+                <div class="card" v-for='(item,index) in todos' :key = 'item.id'>
+                  <div class="card-header">{{item.task}}</div>
+                  <div class="card-content">
+                    <div class="card-content-inner">{{item.content}}</div>
+                  </div>
+                  <div class="card-footer">
+                    <span class="icon icon-check" :class="{'heihei':item.flag}" @click='changeFlag(index)'></span>
+                    <span class="timer" >{{item.time}}</span>
+                    <span class="icon icon-remove" @click='del(index)'></span>
+                  </div>
+                </div>
+
+                <!-- 历史备忘录 -->
+              </div>
+            </div>
+            <div id="tab2" class="tab">
+              <div class="content-block">
+                  <div class="card" v-for='(item,index) in history' :key = 'item.id'>
+                      <div class="card-header">{{item.task}}</div>
+                      <div class="card-content">
+                        <div class="card-content-inner">{{item.content}}</div>
+                      </div>
+                      <div class="card-footer">
+                        <span class="icon icon-check" :class="{'heihei':item.flag}" @click='changeFlag(index)'></span>
+                        <span class="timer" >{{item.time}}</span>
+                        <span class="icon icon-remove" @click='removeHistory(index)'></span>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+
+
+
+
+
+
+
+    </div>
+    <!-- 添加任务 -->
+    <div class="maskBox" v-if='inputFlag' @click.self='closeInput1'>
+      <div class="confirm">
+        <input type="text" v-model='addTask' @keyup.13='add'>
+        <hr>
+        <input type="text" v-model='addVal' @keyup.13='add'>
+        <button style="float: right" @click.stop='closeInput'>确定</button>
+      </div>
+    </div>
+
+    <!-- 遮罩层 -->
+    <div class="maskBox" v-if='maskFlag' @click.self='closeMsak1'>
+      <div class="confirm">
+        <p>您确定删除这条备忘录吗？</p>
+        <button style="float: right" @click.stop='closeMsak'>确定</button>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+<script>
+  Vue.config.productionTip = false;
+  var idd = 1;
+  var historyIdd = 1;
+
+
+  new Vue({
+    el: '#app',
+
+    data: {
+      todos: [{
+          id: idd,
+          task: '欢迎使用',
+          content: '请添加您的备忘录',
+          // time: new Date().toLocaleString(),
+          flag: true
+        }
+      ],
+
+
+      history:[
+        {
+          id: historyIdd,
+          task: '空空如也',
+          content: '您还没有删除的备忘录',
+          // time: new Date().toLocaleString(),
+          flag: true
+        }
+      ],
+
+
+      maskFlag: false, //遮罩层标记
+      addVal: '', //  内容
+      addTask: '', //  标题
+      inputFlag: false, // 添加矿遮罩层标记
+      temp: 0
+    },
+    methods: {
+      changeFlag(i) {
+        this.todos[i].flag = !this.todos[i].flag; // 勾选的颜色变化
+      },
+
+      changeInput() {
+        this.inputFlag = true;
+      },
+
+      del(i) {
+        if (this.todos[i].flag) {
+          
+          this.history.push({
+            id: ++historyIdd,
+            task: this.todos[i].task,
+            content: this.todos[i].content,
+            time: this.todos[i].time,
+            flag: true
+          })
+
+          this.todos.splice(i, 1);
+
+        } else {
+          this.temp = i;
+          this.maskFlag = true;
+        }
+      },
+
+      closeMsak1() {
+        this.maskFlag = false;
+      },
+
+      closeMsak() {
+        this.todos.splice(this.temp, 1);
+        this.maskFlag = false;
+      },
+
+      add() {
+        this.todos.push({
+            id: ++idd,
+            task: this.addTask,
+            content: this.addVal,
+            time: new Date().toLocaleString(),
+            flag: true
+          }),
+          this.addVal = '',
+          this.addTask = '',
+          this.inputFlag = false
+      },
+
+      closeInput1 () {
+        this.inputFlag = false;
+      },
+
+      closeInput() {
+        this.inputFlag = false;
+        if (this.addTask && this.addVal) this.add();
+      },
+
+      removeHistory( i ) {
+        this.history.splice(i, 1);
+      }
+
+    }
+  })
+</script>
+
+</html>

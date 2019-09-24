@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>猫眼</title>
+  <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+  <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+  <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<style>
+  .bar-nav {
+    background: #e54847;
+  }
+
+  .title {
+    color: white;
+  }
+
+  img {
+    width: 100%;
+    height: 100%
+  }
+
+  .movieLB {
+    height: 114px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  }
+
+  .movie-left {
+    width: 64px;
+    height: 90px;
+    float: left;
+  }
+
+  .neirong {
+    width: 70%;
+    overflow: hidden;
+    float: left;
+  }
+
+  .movie-right {
+    margin-left: 74px;
+    height: 90px;
+    max-height: 90px;
+  }
+
+  .line-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+</style>
+
+<body>
+  <!-- page集合的容器，里面放多个平行的.page，其他.page作为内联页面由路由控制展示 -->
+  <div class="page-group">
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page">
+      <!-- 标题栏 -->
+      <header class="bar bar-nav">
+        <h1 class="title">猫眼电影</h1>
+      </header>
+
+      <!-- 工具栏 -->
+      <nav class="bar bar-tab">
+        <a class="tab-item external active" href="#">
+          <span class="icon icon-home"></span>
+          <span class="tab-label">电影</span>
+        </a>
+        <a class="tab-item external" href="#">
+          <span class="icon icon-star"></span>
+          <span class="tab-label">影院</span>
+        </a>
+        <a class="tab-item external" href="#">
+          <span class="icon icon-me"></span>
+          <span class="tab-label">我的</span>
+        </a>
+      </nav>
+
+      <!-- 这里是页面内容区 -->
+      <div class="content">
+        <!-- 标签栏 -->
+        <div class="buttons-tab">
+          <a href="" class="tab-link button" style="text-align: left;font-size:12px">杭州</a>
+          <a href="#tab1" class="tab-link active button">正在热映</a>
+          <a href="#tab2" class="tab-link button">即将上映</a>
+          <a href="" class="tab-link button icon icon-me" style="text-align: right"></a>
+        </div>
+        <div class="content-block" id="app">
+          <div class="tabs">
+            <div id="tab1" class="tab active">
+              <div class="content-block">
+
+                <!-- 需要渲染出来的列表   start -->
+                <div class="movieLB" v-for = 'item in list'>
+                  <div class="movie-left">
+                    <img :src="item.img" alt="">
+                  </div>
+                  <div class="movie-right">
+                    <div class="neirong">
+                      <div class="neirong-1 line-ellipsis" style="font-weight: bold;font-size:17px">{{item.nm}}</div>
+                      <div class="neirong-2">
+                        <div class="neirong-2-1 line-ellipsis">
+                          <span class="score-suffix" style="font-size:13px;color: #666;" v-if = 'item.sc != 0'>观众评</span>
+                          <span class="grade" style="font-size:15px;color: #faaf00;font-weight: bold" v-if = 'item.sc != 0'>{{item.sc}}</span>
+                          <span class="grade" style="font-size:15px;color: #faaf00;font-weight: bold" v-if = 'item.sc == 0'>{{item.wish}}</span>
+                          <span class="score-suffix" style="font-size:13px;color: #666;" v-if = 'item.sc == 0'>人想看</span>
+                        </div>
+                        <div class="neirong-2-2 line-ellipsis" style="font-size:13px;color: #666;">{{item.star}}</div>
+                        <div class="neirong-2-3 line-ellipsis" style="font-size:13px;color: #666;">{{item.showInfo}}</div>
+                      </div>
+                    </div>
+                    <div class="goumai">
+                      <button class="button button-danger button-fill" style="float: right;margin-top: 25px" v-if = 'item.sc != 0'>购票</button>
+                      <button class="button button-fill" style="float: right;margin-top: 25px" v-if = 'item.sc == 0'>预售</button>
+                    </div>
+                  </div>
+                </div>
+                <!-- end -->
+
+
+              </div>
+            </div>
+            <div id="tab2" class="tab">
+              <div class="content-block">
+                <p>This is tab 2 content</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      list: ''
+    },
+    created() {
+      axios({
+        url: './mao.json'
+      }).then((res) => {
+        this.list = res.data.movieList
+        console.log(res.data.movieList);
+      })
+    }
+
+  })
+</script>
+
+</html>
