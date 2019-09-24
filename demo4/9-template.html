@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <template>
+
+      <Hello></Hello>
+
+    </template> -->
+    {{ info }}
+
+    <template id="hello">
+        <div>
+            <p> Hello  模板 </p>
+        </div>
+    </template>
+
+  </div>
+  <!-- <template id="hello">
+      <div>
+          <p> Hello  模板 </p>
+      </div>
+  </template> -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+  /* 
+        如果在实力范围内书写template标签，那么将来它是不会在渲染中出现的
+
+        template标签在实例范围外是直接显示的
+
+        组件的模板可以放在实例范围外书写，但是不好的一点就是这个template标签将来还会存在
+
+        后期我们可以解决这个问题
+    */
+
+
+  new Vue({
+    el:'#app',
+    data:{
+      info:'逗不逗啊'
+    },
+    components:{
+      Hello:{
+        template:'#hello'
+      }
+    }
+  })
+</script>
+</html>

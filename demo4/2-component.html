@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <Hello></Hello>
+  </div>
+
+  <div id="axx">
+    <Hello></Hello>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  /* 
+        Vue.extend() 不会进行实例化
+        Vue中组件的使用方式 是  类似于   标签
+
+        为了符合H5的规范，那么我们需要将这些类似于标签一样的内容进行注册 
+
+        注册的作用是为了使用Vue来进行解析
+     */
+
+  const HelloP = Vue.extend({
+    // template选项是为了确定一个模板，模板中写的就是jsx
+    template: '<p> 你好component </p>'
+  })
+    // 第一个参数是渲染的标签名  第二个参数是Vue.extend（）相关的变量
+  Vue.component('Hello', HelloP)
+
+  // 组件的注册:  全局注册 、 局部注册
+
+  // 全局注册
+  // Vue.component(组件的名称，组件配置)
+
+  // 组件用大写表示，作用是为了区分原生html提供的标签
+
+  new Vue({
+    el: '#app'
+  })
+
+  new Vue({
+    el: '#axx'
+  })
+</script>
+
+</html>

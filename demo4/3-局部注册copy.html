@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <Hello></Hello>
+  </div>
+  <div id="axx">
+    <Hello></Hello>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const Hello = Vue.extend({
+    template: '<p> 你好局部注册component </p>'
+  })
+
+  // 组件的注册:  全局注册 、 局部注册
+
+  // 全局注册
+  // Vue.component(组件的名称，组件配置)
+
+  // 组件用大写表示，作用是为了区分原生html提供的标签
+
+  new Vue({
+    el: '#app',
+    components: {
+      // 组件名称：组件的选项
+      Hello: Hello
+    }
+  })
+  new Vue({
+    el: '#axx',
+    components: {
+      Hello: Hello
+    }
+  })
+</script>
+
+</html>

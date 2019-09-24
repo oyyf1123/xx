@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <Hello></Hello>
+
+  </div>
+
+  <template id="hello">
+
+    <div>
+      <p>{{ money }}</p>
+    </div>
+
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  /* 
+        1. 组件是一个独立的个体，那么它应该拥有属于它自己的数据
+        2. 组件的数据是要有独立作用域的，不容易被外界干扰
+        3. 除了根实例以外，组件的data选项都是一个函数
+        4. 为什么data选项要返回一个对象？
+            - 因为Vue深入响应式原理要求是对一个对象进行getter和setter设置
+        5. 组件的数据在组件的模板中相当于全局变量
+     */
+
+
+
+  new Vue({
+        el: '#app',
+        components: {
+          Hello: {
+            template: '#hello',
+            data() {
+              return {
+                money: 2000
+              }
+            }
+          }
+        }
+        })
+</script>
+
+</html>

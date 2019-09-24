@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <Hello></Hello>
+    <hello-title></hello-title>
+    <!-- <banner-list></banner-list> -->
+    <hello-title></hello-title>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // Vue.component('banner-list',{
+  //       template: '<div> banner </div>'
+  //   })
+
+  new Vue({
+    el:'#app',
+    components:{
+      Hello:{
+        template:'<p> 这是第一种模式单个单词模式大写开头 </p>'
+      },
+      HelloTitle:{
+        template:'<p> 这是第二种模式双单词大写开头第二个单词也大写开头,但是标签得用 小写加-的模式 </p>'
+      },
+      'hello-title':{
+        template:'<p> 这是第三种模式双单词小写开头第二个单词也小写开头，中间用-连接 </p>'
+      }
+    }
+  })
+</script>
+</html>

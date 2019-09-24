@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click = 'changeLogin'>
+       {{changeName}}
+    </button>
+    <keep-alive>
+      <component :is="login"></component>
+    </keep-alive>
+
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      login:'Ulogin',
+    },
+    methods:{
+      changeLogin (){
+        this.login = this.login == 'Ulogin' &&  'Plogin' || 'Ulogin'
+      }
+    },
+    computed:{
+      changeName(){
+        return     this.login == 'Ulogin' &&  '手机号码登录' || '账号密码登录'
+      }
+      
+    },
+
+    components:{
+      Ulogin:{
+        template: `
+            <div>
+                用户名： <input  type = "text"/>  <br>
+                密码： <input type = "password" />
+            </div>
+        `
+      },
+      Plogin:{
+        template: `
+            <div>
+                手机号码： <input  type = "text"/>  <br>
+                接收到的验证码： <input type = "password" />
+            </div>
+        `
+      }
+    }
+  })
+</script>
+
+</html>

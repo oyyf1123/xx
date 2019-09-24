@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <table>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+<!-- 对于特殊的标签得用   is 属性 来渲染 -->
+      <!-- <Hello></Hello> -->
+      <tr is = 'Hello' ></tr>
+    </table>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+  /* 
+        我们的html中有些标签是特殊的，它规定了它的父子级，这类型标签有
+            ul li 
+            ol li 
+            dl dt  dd 
+            select option 
+            table tr td 
+        这类型的直接父子级关系的标签，是不能直接用组件代替的，如果代替了，那么父级会将组件排斥在外面
+
+        解决： is属性
+
+            is属性的作用就是将一个绑定的容器解析为一个组件的模板
+    
+     */
+
+
+  new Vue({
+    el: '#app',
+    components: {
+      Hello: {
+        template: `
+        <tr>
+          <td>4</td>
+          <td>4</td>
+          <td>4</td>
+        </tr>
+        `
+      }
+    }
+  })
+</script>
+
+</html>
