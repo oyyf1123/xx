@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+    <Father></Father>
+
+  </div>
+
+  <template id="father">
+    <div>
+      <p> 父亲收到儿子的红包后小金库还有{{ xiaojinku }} </p>
+
+      <Son @get = 'get'>  </Son>
+    </div>
+  </template>
+  
+  <template id="son">
+    <div>
+
+      <p> 儿子给父亲节日红包 </p>
+      <button @click = 'give' >发红包</button>
+
+    </div>
+
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+  Vue.component('Father',{
+    template:'#father',
+    data(){
+      return {
+        xiaojinku:500
+      }
+    },
+    methods:{
+      get( money ){
+        this.xiaojinku = money + this.xiaojinku;
+      }
+    }
+  });
+
+  Vue.component('Son',{
+    template:'#son',
+    data(){
+      return {
+        hongbao : 5000
+      }
+    },
+    methods:{
+      give(){
+        this.$emit('get',this.hongbao)
+      }
+    }
+  })
+
+
+  new Vue({
+    el:'#app',
+  })
+</script>
+</html>

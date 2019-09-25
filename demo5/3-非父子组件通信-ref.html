@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <Father>
+
+    </Father>
+  </div>
+
+  <template id="father">
+    <div>
+      <Daughter :fight = 'fight' ref = 'daughter'></Daughter>
+      <hr>
+      <!-- ref的属性名字随意，但是为了便于使用，我这里用了组件的名字 -->
+      <Son ref = 'son'></Son>
+    </div>
+  </template>
+
+  <template id="son">
+    <div>
+      <img src="./img/pikaqiu.jpg" alt="" v-if = 'flag' >
+    </div>
+  </template>
+
+  <template id="daughter">
+    <div>
+      <button @click = 'fight'> {{changeSay}} </button>
+    </div>
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+  // 组件的数据是由独立作用于的，组件自己的数据自己更改
+  Vue.component('Father',{
+    template:'#father',
+    methods:{
+      fight(){
+        this.$refs.son.changeFlag();
+        this.$refs.daughter.changeD();
+      }
+    }
+  });
+
+  Vue.component('Son',{
+    template:'#son',
+    data(){
+      return {
+        flag:false
+      }
+    },
+    methods:{
+      changeFlag (){
+        this.flag = !this.flag;
+      }
+    }
+  });
+
+  Vue.component('Daughter',{
+    template:'#daughter',
+    data(){
+      return {
+        say:'不打不打摸摸哒'
+      }
+    },
+    methods:{
+      changeD (){
+        this.say = this.say == '不打不打摸摸哒' && '打死你这个傻弟弟' || '不打不打摸摸哒';
+      }
+    },
+    computed:{
+      changeSay(){
+        return  this.say == '打死你这个傻弟弟' && '不打不打摸摸哒' || '打死你这个傻弟弟';
+      }
+    },
+    props:['fight']
+  });
+
+
+  new Vue({
+    el:'#app',
+  });
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+
+  <template id="content">
+    <div>
+      <input type="text">
+    </div>
+  </template>
+
+  <template id="list">
+    <div>
+      <ul>
+        <li></li>
+      </ul>
+    </div>
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // bus事件总线思维： 将new Vue() 的实例作为全局变量，用来联通非父子组件
+  var bus = new Vue();
+
+  Vue.component('YourContent',{
+    template:'#content'
+  });
+
+  Vue.component('ContentList',{
+    template:'#list',
+    data(){
+      return {
+        list :[
+          {
+            id:1,
+            task:'write code'
+          },
+          {
+            id:2,
+            task:'write code and reade vidio'
+          }
+        ]
+      }
+    },
+    methods(){
+      var _this = this;
+      bus.$on('addList',function( val ){
+        this.
+      })
+    }
+  })
+
+
+  new Vue({
+    el:'#app',
+  })
+</script>
+</html>
