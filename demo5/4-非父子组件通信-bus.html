@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
   <div id="app">
-
+    <your-content></your-content>
+    <hr>
+    <content-list></content-list>
   </div>
 
   <template id="content">
     <div>
-      <input type="text">
+      <input type="text" @keyup.enter='setTask' v-model = 'val'>
     </div>
   </template>
 
   <template id="list">
     <div>
       <ul>
-        <li></li>
+        <li v-for = 'item in list' :key = 'item.id'>{{ item.task }}</li>
       </ul>
     </div>
   </template>
@@ -30,38 +34,54 @@
 <script>
   // bus事件总线思维： 将new Vue() 的实例作为全局变量，用来联通非父子组件
   var bus = new Vue();
+  var id = 0
 
-  Vue.component('YourContent',{
-    template:'#content'
-  });
-
-  Vue.component('ContentList',{
-    template:'#list',
+  Vue.component('YourContent', {
+    template: '#content',
     data(){
       return {
-        list :[
-          {
-            id:1,
-            task:'write code'
+        val:''
+      }
+    },
+    methods: {
+      setTask() {
+        bus.$emit('addList', this.val);
+        this.val = ''
+      }
+    }
+
+  });
+
+  Vue.component('ContentList', {
+    template: '#list',
+    data() {
+      return {
+        list: [{
+            id: ++id,
+            task: 'write code'
           },
           {
-            id:2,
-            task:'write code and reade vidio'
+            id: ++id,
+            task: 'write code and reade vidio'
           }
         ]
       }
     },
-    methods(){
+    created() {
       var _this = this;
-      bus.$on('addList',function( val ){
-        this.
+      bus.$on('addList', val => {
+        _this.list.push({
+          id: ++id,
+          task: val
+        })
       })
-    }
+    },
   })
 
 
   new Vue({
-    el:'#app',
+    el: '#app',
   })
 </script>
+
 </html>
