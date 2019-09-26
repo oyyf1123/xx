@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <Hello>
+      <!-- {{ scope.money }} -->
+      <template v-slot:default = 'scope'>
+
+        {{ scope.money }}
+
+      </template>
+
+    </Hello>
+  </div>
+
+  <template id="hello">
+    <div>
+      <h3> 这个是体现作用域插槽 </h3>
+      <slot :money = 'money' >  </slot>
+    </div>
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+
+  new Vue({
+    el:'#app',
+    components:{
+      'Hello':{
+        template:'#hello',
+        data(){
+          return {
+            money:1123
+          }
+        }
+      }
+    }
+  })
+</script>
+</html>

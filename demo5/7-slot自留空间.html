@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <Hello>
+      <p> 我想看看这个大世界 </p>
+    </Hello>
+    
+  </div>
+
+  <template id="hello">
+    <div>
+      hello
+      <slot></slot>   
+      <!-- 插槽，给组件预留空间，用来给别的标签使用 -->
+    </div>
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+  Vue.component('Hello',{
+    template:'#hello'
+  })
+
+  new Vue({
+    el:'#app'
+  })
+</script>
+</html>

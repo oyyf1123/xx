@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <Hello>
+      <header slot = 'header'> 头 </header>
+      <p> 我想看看这个大世界 </p>
+      <header slot = 'footer'> 脚 </header>
+    </Hello>
+  </div>
+
+  <template id="hello">
+    <div>
+      <slot name = 'header'></slot>
+      <p> 中间 </p>
+      <slot name = 'footer'></slot>   
+      <!--   具体的名字，对应的绑定。一槽一用  -->
+    </div>
+  </template>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+  Vue.component('Hello',{
+    template:'#hello'
+  })
+
+  new Vue({
+    el:'#app'
+  })
+</script>
+</html>
