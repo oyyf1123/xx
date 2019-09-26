@@ -5,7 +5,12 @@
 </template>
 
 <style lang="stylus" scoped>
-  $color = red 
   p  
-    color = blue
+    color  blue
+    font-size 32px
+</style>
+
+  
+  
+    
 </style>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/filter.css">
+</head>
+<body>
+    <div id="app">
+        <Hello></Hello>
+    </div>
+    <template id="hello">
+        <div class="hello">
+                <div class="tab-content">
+                        <div class="page n-hot active" data-hot=".n-hot" data-cid="c_dmLad">
+                            <div class="list-wrap" style="margin-top: 0px;">
+                                <div class="item" 
+                                    v-for = "list in lists"
+                                    :key = "list.id"
+                                    data-id="1240752" data-bid="dp_wx_home_movie_list"
+                                >
+                                    <div class="main-block">
+                                        <div class="avatar" sort-flag="">
+            
+                                            <div class="default-img-bg">
+                                                <img :src = "list.img | imgFilter('128.180')">
+                                            </div>
+                                        </div>
+                                        <div class="mb-outline-b content-wrapper">
+            
+            
+                                            <div class="column content">
+                                                <div class="box-flex movie-title">
+                                                    <div class="title line-ellipsis "> {{ list.nm }} </div>
+            
+            
+                                                </div>
+            
+                                                <div class="detail column">
+            
+            
+                                                    <div class="score line-ellipsis">
+                                                        <span class="score-suffix">观众评 </span>
+                                                        <span class="grade"> {{ list.sc }} </span>
+                                                    </div>
+            
+            
+            
+            
+                                                    <div class="actor line-ellipsis">主演:{{ list.star }}</div>
+            
+            
+            
+            
+            
+                                                    <div class="show-info line-ellipsis"> {{ list.showInfo }} </div>
+            
+                                                </div>
+                                            </div>
+            
+                                            <div class="button-block" data-id="1240752">
+            
+                                                <div class="btn normal"><span class="fix" data-bid="dp_wx_home_movie_btn">购票</span>
+                                                </div>
+            
+                                            </div>
+            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                    </div>
+        </div>
+    </template>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    console.log( Vue )
+
+    // 初始化钩子函数执行一次,都是自动执行的
+
+    // 研究一个问题： 数据请求那里写，数据修改那里写
+    // 当我们页面第一次加载时的功能
+
+    Vue.component('Hello',{
+        template: '#hello',
+        data () {
+            return {
+                lists: null
+            }
+        },
+        filters:{
+          'imgFilter':function(el ,size){
+            return el.replace('w.h',size)
+          }
+        },
+        beforeCreate () { // 初始化实例的事件和生命周期 - 做准备
+            console.log('1-beforeCreate')
+        },
+        created () { // 对data选项中的数据进行初始化
+            console.log('2-created')
+            fetch('./mock/list.json')
+                .then( data => data.json())
+                .then( res => {
+                    this.lists = res.movieList
+                }).catch( err => console.log( err ))
+        },
+        beforeMount () { 
+            // 判断el
+            // 判断template
+            // 内置隐藏了一个render函数，render函数的作用及时将jsx语法转换成 VDOM对象模型，以供diff对比
+            // 此时，我们有了VDOM
+            // 更多的实在做内部任务，我们就不人为干预了
+            console.log( '3-beforeMount ')
+        },
+        mounted () {
+            // 将vdom渲染为真实DOM,然后插入页面，这个时候，我们就得到了真实DOM,也就是页面中已经可以看到真实DOM了
+            console.log('4-mounted')
+
+             // fetch('./mock/list.json')
+            //     .then( data => data.json())
+            //     .then( res => {
+            //         this.list = res.movieList
+            //     }).catch( err => console.log( err ))
+
+            //如果我这里能够操作dom，那么我们就可以证明这里已经有真实DOM
+
+            document.querySelector('.hello').style.background  = 'red' // 不推荐这么些
+
+        }
+    })
+    new Vue({
+        
+    }).$mount('#app') // $mount称之为 手动挂载
+
+    // new Vue({
+    //   el:'#app'
+    // })
+</script>
+</html>

@@ -6,20 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
-<body>
-  <div id="app">
-
-  </div>
+<body onload="load()">
+  <input type="text">
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
-  new Vue({
-    el:'#app',
-    data() {
-      return {
-        
-      }
-    },
-  })
+  function load(){
+    const input = document.querySelector('input');
+    input.focus();
+  }
 </script>
 </html>
