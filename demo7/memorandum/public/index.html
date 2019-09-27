@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>memorandum</title>
+  <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+  <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+  <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<style>
+  .icon-check {
+    width: 30px;
+    height: 30px;
+
+    color: green;
+
+    border: 1px solid green;
+    border-radius: 7px;
+    text-align: center;
+    line-height: 30px;
+  }
+
+  .heihei {
+    color: white;
+    background: green;
+  }
+
+  .maskBox {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    height: 100%;
+    width: 100%;
+
+    background: rgba(0, 0, 0, .5);
+    z-index: 99999;
+  }
+
+  .confirm {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    margin: auto;
+
+    width: 80%;
+    height: 115px;
+
+    background: white;
+
+    padding: 10px;
+
+    border-radius: 10px;
+  }
+</style>
+
+<body>
+  <noscript>
+    <strong>We're sorry but memorandum doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>

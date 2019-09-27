@@ -1,5 +1,5 @@
 <template>
   <div>
-    赞助我们
+    国庆赞助个回家的票
   </div>
 </template>

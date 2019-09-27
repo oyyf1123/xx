@@ -1,5 +1,5 @@
 <template>
   <div>
-    详情页
+    国庆可能不回去
   </div>
 </template>

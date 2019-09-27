@@ -102,9 +102,9 @@
         <div class="content-block">
           <div class="tabs">
             <div id="tab1" class="tab active">
-              <div class="content-block">
-                  <!-- 备忘录  -->
 
+               <!-- 备忘录  -->
+              <div class="content-block">
                 <div class="card" v-for='(item,index) in todos' :key = 'item.id'>
                   <div class="card-header">{{item.task}}</div>
                   <div class="card-content">
@@ -117,9 +117,12 @@
                   </div>
                 </div>
 
-                <!-- 历史备忘录 -->
+               
               </div>
             </div>
+
+
+             <!-- 历史备忘录 -->
             <div id="tab2" class="tab">
               <div class="content-block">
                   <div class="card" v-for='(item,index) in history' :key = 'item.id'>

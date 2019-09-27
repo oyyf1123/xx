@@ -1,5 +1,5 @@
 <template>
   <div>
-    说明页
+    国庆还是要回去
   </div>
 </template>
