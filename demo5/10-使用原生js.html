@@ -6,25 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
-<body>
-  <div id="app">
-    <button @click = 'changeColor'> 点击 </button>
-    <p ref> 正常 </p>
-    <p ref = 'p'> 变色 </p>
-  </div>
+<body onload="load()">
+  <input type="text">
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
- 
-  //  ref也可以操作dom
-
-  new Vue({
-    el:'#app',
-    methods:{
-      changeColor(){
-        this.$refs.p.style.background = 'yellow'
-      }
-    }
-  })
+  function load(){
+    const input = document.querySelector('input');
+    input.focus();
+  }
 </script>
 </html>

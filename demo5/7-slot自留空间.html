@@ -8,23 +8,30 @@
 </head>
 <body>
   <div id="app">
-    <button @click = 'changeColor'> 点击 </button>
-    <p ref> 正常 </p>
-    <p ref = 'p'> 变色 </p>
+    <Hello>
+      <p> 我想看看这个大世界 </p>
+    </Hello>
+    
   </div>
+
+  <template id="hello">
+    <div>
+      hello
+      <slot></slot>   
+      <!-- 插槽，给组件预留空间，用来给别的标签使用 -->
+    </div>
+  </template>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
- 
-  //  ref也可以操作dom
+
+  Vue.component('Hello',{
+    template:'#hello'
+  })
 
   new Vue({
-    el:'#app',
-    methods:{
-      changeColor(){
-        this.$refs.p.style.background = 'yellow'
-      }
-    }
+    el:'#app'
   })
 </script>
 </html>

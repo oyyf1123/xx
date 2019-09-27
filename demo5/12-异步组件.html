@@ -8,23 +8,23 @@
 </head>
 <body>
   <div id="app">
-    <button @click = 'changeColor'> 点击 </button>
-    <p ref> 正常 </p>
-    <p ref = 'p'> 变色 </p>
+    <async-comp></async-comp>
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
- 
-  //  ref也可以操作dom
+
+  Vue.component('async-comp',(resolve,reject) => {
+    setTimeout(() => {
+      resolve({
+        template:'<p> 这是个异步的组件 </p>'
+      })
+    }, 0);
+  })
+
 
   new Vue({
-    el:'#app',
-    methods:{
-      changeColor(){
-        this.$refs.p.style.background = 'yellow'
-      }
-    }
+    el:'#app'
   })
 </script>
 </html>

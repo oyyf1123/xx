@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text " v-focus>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // Vue.directive('focus',{
+  //   inserted(el){
+  //     el.focus();
+  //   }                  // 直接定义指令
+  // });
+  // new Vue({
+  //   el:'#app'
+  // })
+
+  // new Vue({
+  //   el:'#app',
+  //   directives:{
+  //     'focus':{
+  //       inserted(el){  // 这样定义也可以
+  //         el.focus()
+  //       }
+  //     }
+  //   }
+  // })
+
+
+  // Vue.directive('content',{
+  //       bind () {
+  //           console.log('指令和原生绑定了')
+  //       },
+  //       inserted ( a,b,c,d ) { 
+  //           console.log('a',a) // 当前原生，我们用el表示  el  - 》 element
+  //           console.log('b',b) // b指的就是当前这个指令的所有信息
+  //           console.log('c',c) // c 表示的事当前虚拟节点的信息
+  //           console.log('d',d) // d表示的是虚拟节点变化前的节点信息
+
+  //           if ( b.modifiers.a ) {
+  //               a.style.background = 'red'
+  //           } else {
+  //               a.style.background = 'yellow'
+  //           }
+  //           a.innerHTML = b.expression
+  //       },
+  //       unbind () {
+  //           console.log('指令解绑了')
+  //       }
+  //   })
+</script>
+</html>
