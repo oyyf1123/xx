@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MoveTab></MoveTab>
-    <router-view></router-view>
+    <MoveTab />
+    <router-view />
   </div>
 </template>
 

@@ -1,11 +1,8 @@
 <template>
   <div id="app">
-    <Header ></Header>
-    <router-view></router-view>
-    <!-- <Hotting></Hotting> -->
-    <!-- if(router === 'movie') <Hotting></Hotting>
-    if(router === 'movie') <Hotting></Hotting> -->
-    <Bar></Bar>
+    <Header /> 
+    <router-view />
+    <Bar />
   </div>
 </template>
 

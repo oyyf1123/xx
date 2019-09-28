@@ -18,14 +18,17 @@ export default {
 .head {
   width: 100%;
   height: 44px;
-  line-height: 44px;
+  line-height: 46px;
   display: flex;
   justify-content: space-around;
   position:relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 2px;
 }
 .head span{
   text-align: center;
   width: 21.33333vw;
+  font-weight: bold;
 }
 .active {
   color: #ef4238;
