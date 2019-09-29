@@ -3,7 +3,12 @@
 </template>
 
 <script>
+
+import Swiper from "swiper"
 export default {
   
 };
 </script>
+<style scoped>
+  
+</style>

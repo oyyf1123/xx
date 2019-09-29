@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow:auto;height:600px">
+  <div class="wrap">
     <!-- 正在热映 -->
     
     <!-- 需要渲染出来的列表   start -->
@@ -52,8 +52,9 @@
 </template>
 
 <style scoped>
-.outClass{
-  overflow-y: scroll;
+.wrap{
+  height: calc(100vh -142px);
+  overflow-y: scroll
 }
 
 img {
@@ -111,14 +112,14 @@ export default {
   },
   created() {
     this.$http({
-      url: api.behotting
-      // params:{  // 这是get请求的参数  携带的形式  携带的方法
-      //   // token: ''
-      // }
+      url: api.behotting,
+      params:{  // 这是get请求的参数  携带的形式  携带的方法
+        token: ''
+      }
     })
       .then(res => {
         this.movieList = res.data.movieList;
-        console.log(this.movieList);
+        // console.log(this.movieList);
       })
       .catch(err => console.log(err));
   }
