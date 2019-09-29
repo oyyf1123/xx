@@ -53,7 +53,7 @@
 
 <style scoped>
 .wrap{
-  height: calc(100vh -142px);
+  height: calc(100vh - 142px);
   overflow-y: scroll
 }
 

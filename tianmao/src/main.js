@@ -6,9 +6,12 @@ import axios from 'axios'
 import ElementUl from 'element-ui'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+
 import 'swiper/css/swiper.css'
 
 Vue.config.productionTip = false
+
+
 
 Vue.use(ElementUl);
 
