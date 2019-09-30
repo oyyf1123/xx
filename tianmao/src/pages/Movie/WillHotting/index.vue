@@ -15,16 +15,12 @@
             <p class="p1">{{ item.comingTitle.split(' ')[0] }}</p>
           </div>
         </div>
-        
       </div>
     </div>
     <div class="movieList">
       <div class="movie-time" v-for=" (itemWeek,index) in tempObj " :key="index">
         <p class="p2">{{ itemWeek[0].comingTitle }}</p>
-        <div class="movie"
-          v-for="list in itemWeek" 
-          :key="list.id"
-        >
+        <div class="movie" v-for="list in itemWeek" :key="list.id">
           <div class="movie-left left">
             <img :src="list.img | Pfilter('64.90')" alt />
           </div>
@@ -113,6 +109,61 @@ export default {
         } )
       });
     });
+  },
+  mounted() {
+     this.$nextTick(function () {
+      window.addEventListener('scroll', this.onScroll)
+    })
+  },
+  methods: {
+       // 获取滚动条当前的位置
+    getScrollTop () {
+      var scrollTop = 0
+      if (document.documentElement && document.documentElement.scrollTop) {
+        scrollTop = document.documentElement.scrollTop
+      } else if (document.body) {
+        scrollTop = document.body.scrollTop
+      }
+      return scrollTop
+    },
+    // 获取当前可视范围的高度
+    getClientHeight () {
+      var clientHeight = 0
+      if (document.body.clientHeight && document.documentElement.clientHeight) {
+        clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight)
+      } else {
+        clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight)
+      }
+      return clientHeight
+    },
+
+    // 获取文档完整的高度
+    getScrollHeight () {
+      return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
+    },
+    // 滚动事件触发下拉加载
+    onScroll () {
+      if (Math.floor(this.getScrollHeight() - this.getClientHeight() - this.getScrollTop()) <= 0) {
+        this.moreDatatimer = setTimeout(() => {
+          this.$http({
+            url: api.willshow,
+            params: {
+              token: '',
+              limit: 10,
+              movieIds: '1296312,1251393,342146,1219701,503342,1227005,1219636,1256872,1284496,296020'
+            }
+          }).then((res) => {
+            this.moreComingLists = res.data.coming
+          }).catch((err) => {
+            throw err
+          })
+        }, 300);
+      }
+    },
+  },
+  beforeDestory () {
+    window.onscroll = null
+    clearInterval(this.moreDatatimer)
   }
 };
 </script>
@@ -208,14 +259,14 @@ p.p1 {
   margin-top: 6px;
   padding-bottom: 20px;
 
-  border-bottom: 1px solid rgba(0, 0, 0, .2)
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.movie-right::after{
-  content: '';
+.movie-right::after {
+  content: "";
   clear: both;
   overflow: hidden;
 }
-.right-info{
+.right-info {
   height: 88px;
 }
 h3 {
@@ -248,7 +299,7 @@ h3 {
   margin-top: 6px;
   color: #666;
 }
-img{
+img {
   width: 100%;
   height: 100%;
 }
