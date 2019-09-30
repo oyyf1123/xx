@@ -1,7 +1,8 @@
 <template>
   <div class="bar">
+    <!-- 跳转 -->
     <div @click="changeBar">
-      <router-link tag="span" :class="{active:active==='movie'}" to="/movie">电影</router-link>
+      <router-link tag="span" :class="{active:active==='movie'}" to="/movie">电影</router-link>   
     </div>
 
     <div @click="changeBar">
