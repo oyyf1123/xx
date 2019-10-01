@@ -137,7 +137,8 @@ export default {
       return clientHeight
     },
 
-    // 获取文档完整的高度
+    // 获取文档完整的高度1
+    
     getScrollHeight () {
       return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
     },
