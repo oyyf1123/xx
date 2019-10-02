@@ -20,6 +20,7 @@
     <div class="movieList">
       <div class="movie-time" v-for=" (itemWeek,index) in tempObj " :key="index">
         <p class="p2">{{ itemWeek[0].comingTitle }}</p>
+        <!-- 轮播下方的电影列表 -->
         <div class="movie" v-for="list in itemWeek" :key="list.id">
           <div class="movie-left left">
             <img :src="list.img | Pfilter('64.90')" alt />
