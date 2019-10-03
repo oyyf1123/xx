@@ -55,7 +55,7 @@ export default {
       bannerList: null,
       willshow: null,
       tempArr: [],
-      tempObj: [],
+      tempObj: []
     };
   },
   filters: {
@@ -98,24 +98,24 @@ export default {
           this.tempArr.push(tempTime);
         }
       });
-      for(let i = 0 ; i < this.tempArr.length ; i++){
-        this.tempObj.push([])
+      for (let i = 0; i < this.tempArr.length; i++) {
+        this.tempObj.push([]);
       }
       this.willshow.forEach(item => {
         let tempTime = item.comingTitle.split(" ")[0];
-        this.tempArr.forEach( (temp , index) => {
-          if(tempTime == temp){
+        this.tempArr.forEach((temp, index) => {
+          if (tempTime == temp) {
             this.tempObj[index].push(item);
           }
-        } )
+        });
       });
     });
   },
-  // mounted() {
-  //    this.$nextTick(function () {
-  //     window.addEventListener('scroll', this.onScroll)
-  //   })
-  // },
+  mounted() {
+    this.$nextTick(function() {
+      window.addEventListener("scroll", this.onScroll);
+    });
+  }
   // methods: {
   //      // 获取滚动条当前的位置
   //   getScrollTop () {
@@ -139,7 +139,7 @@ export default {
   //   },
 
   //   // 获取文档完整的高度1
-    
+
   //   getScrollHeight () {
   //     return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
   //   },
