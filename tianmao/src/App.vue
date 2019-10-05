@@ -7,6 +7,7 @@
 </template>
 
 <script>
+// 将组件导入
 import Header from "./pages/Header";
 import Bar from "./pages/Bar";
 
