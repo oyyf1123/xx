@@ -39,6 +39,30 @@
 
             <button class="button button-fill right" style="margin-top: 35px">预售</button>
           </div>
+
+
+
+          <div class="movie" v-for="list in moreComingLists" :key="list.id">
+          <div class="movie-left left">
+            <img :src="list.img | Pfilter('64.90')" alt />
+          </div>
+
+          <div class="movie-right left">
+            <div class="right-info left">
+              <h3>{{ list.nm }}</h3>
+              <div>
+                <span class="spanNum">{{ list.wish }}</span>
+                <span class="spanXX">人想看</span>
+              </div>
+              <span class="star line-ellipsis">主演: {{ list.star }}</span>
+              <span class="time">{{ list.rt }}上映</span>
+            </div>
+
+            <button class="button button-fill right" style="margin-top: 35px">预售</button>
+          </div>
+        </div>
+
+
         </div>
       </div>
     </div>
@@ -52,6 +76,7 @@ import api from "../../../api";
 export default {
   data() {
     return {
+      moreComingLists:null,
       bannerList: null,
       willshow: null,
       tempArr: [],
@@ -113,60 +138,61 @@ export default {
   },
   mounted() {
     this.$nextTick(function() {
-      window.addEventListener("scroll", this.onScroll);
+      window.addEventListener("scroll", this.onScroll());
     });
+  },
+  methods: {
+       // 获取滚动条当前的位置
+    getScrollTop () {
+      var scrollTop = 0
+      if (document.documentElement && document.documentElement.scrollTop) {
+        scrollTop = document.documentElement.scrollTop
+      } else if (document.body) {
+        scrollTop = document.body.scrollTop
+      }
+      return scrollTop
+    },
+    // 获取当前可视范围的高度
+    getClientHeight () {
+      var clientHeight = 0
+      if (document.body.clientHeight && document.documentElement.clientHeight) {
+        clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight)
+      } else {
+        clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight)
+      }
+      return clientHeight
+    },
+
+    // 获取文档完整的高度1
+
+    getScrollHeight () {
+      return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
+    },
+    // 滚动事件触发下拉加载
+    onScroll () {
+      
+      if (Math.floor(this.getScrollHeight() - this.getClientHeight() - this.getScrollTop()) <= 0) {
+        this.moreDatatimer = setTimeout(() => {
+          this.$http({
+            url: api.willshow,
+            params: {
+              token: '',
+              limit: 10,
+              movieIds: '1296312,1251393,342146,1219701,503342,1227005,1219636,1256872,1284496,296020'
+            }
+          }).then((res) => {
+            this.moreComingLists = res.data.coming
+          }).catch((err) => {
+            throw err
+          })
+        }, 300);
+      }
+    },
+  },
+  beforeDestory () {
+    window.onScroll = null
+    clearInterval(this.moreDatatimer)
   }
-  // methods: {
-  //      // 获取滚动条当前的位置
-  //   getScrollTop () {
-  //     var scrollTop = 0
-  //     if (document.documentElement && document.documentElement.scrollTop) {
-  //       scrollTop = document.documentElement.scrollTop
-  //     } else if (document.body) {
-  //       scrollTop = document.body.scrollTop
-  //     }
-  //     return scrollTop
-  //   },
-  //   // 获取当前可视范围的高度
-  //   getClientHeight () {
-  //     var clientHeight = 0
-  //     if (document.body.clientHeight && document.documentElement.clientHeight) {
-  //       clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight)
-  //     } else {
-  //       clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight)
-  //     }
-  //     return clientHeight
-  //   },
-
-  //   // 获取文档完整的高度1
-
-  //   getScrollHeight () {
-  //     return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
-  //   },
-  //   // 滚动事件触发下拉加载
-  //   onScroll () {
-  //     if (Math.floor(this.getScrollHeight() - this.getClientHeight() - this.getScrollTop()) <= 0) {
-  //       this.moreDatatimer = setTimeout(() => {
-  //         this.$http({
-  //           url: api.willshow,
-  //           params: {
-  //             token: '',
-  //             limit: 10,
-  //             movieIds: '1296312,1251393,342146,1219701,503342,1227005,1219636,1256872,1284496,296020'
-  //           }
-  //         }).then((res) => {
-  //           this.moreComingLists = res.data.coming
-  //         }).catch((err) => {
-  //           throw err
-  //         })
-  //       }, 300);
-  //     }
-  //   },
-  // },
-  // beforeDestory () {
-  //   window.onscroll = null
-  //   clearInterval(this.moreDatatimer)
-  // }
 };
 </script>
 <style scoped>
