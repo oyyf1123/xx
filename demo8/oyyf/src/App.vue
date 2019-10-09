@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Content from './pages/content'
+import Content from './components/content'
 export default {
   name:'app',
   components:{
@@ -15,5 +15,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#app{
+  height: 100%;
+}
+</style>
 
 

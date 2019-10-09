@@ -16,7 +16,9 @@ import {
   DropdownItem,
   Main,
   Table,
-  TableColumn
+  TableColumn,
+  Breadcrumb,
+  BreadcrumbItem
 } from 'element-ui';
 
 
@@ -33,6 +35,8 @@ Vue.use(DropdownItem)
 Vue.use(Main)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
 
 Vue.config.productionTip = false
 
