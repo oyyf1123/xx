@@ -42,20 +42,20 @@
 
 
 
-          <div class="movie" v-for="list in moreComingLists" :key="list.id">
+          <div class="movie" v-for="moreComingList in moreComingLists" :key="moreComingList.id">
           <div class="movie-left left">
-            <img :src="list.img | Pfilter('64.90')" alt />
+            <img :src="moreComingList.img | Pfilter('64.90')" alt />
           </div>
 
           <div class="movie-right left">
             <div class="right-info left">
-              <h3>{{ list.nm }}</h3>
+              <h3>{{ moreComingList.nm }}</h3>
               <div>
-                <span class="spanNum">{{ list.wish }}</span>
+                <span class="spanNum">{{ moreComingList.wish }}</span>
                 <span class="spanXX">人想看</span>
               </div>
-              <span class="star line-ellipsis">主演: {{ list.star }}</span>
-              <span class="time">{{ list.rt }}上映</span>
+              <span class="star line-ellipsis">主演: {{ moreComingList.star }}</span>
+              <span class="time">{{ moreComingList.rt }}上映</span>
             </div>
 
             <button class="button button-fill right" style="margin-top: 35px">预售</button>
@@ -170,7 +170,7 @@ export default {
     },
     // 滚动事件触发下拉加载
     onScroll () {
-      
+      console.log(this.getScrollHeight() - this.getClientHeight() - this.getScrollTop());
       if (Math.floor(this.getScrollHeight() - this.getClientHeight() - this.getScrollTop()) <= 0) {
         this.moreDatatimer = setTimeout(() => {
           this.$http({
