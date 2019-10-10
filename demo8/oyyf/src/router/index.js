@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 
 
 const Home = () => import( /* webpackChunkName: "group-foo" */ 'pages/home')
-const AddShop = () => import('pages/add-data/Addshop')
 const AddStore = () => import('pages/add-data/Addstore')
 const Chart = () => import('pages/chart')
 const MenageData = () => import('pages/menagedata')
@@ -25,10 +24,6 @@ const router = new VueRouter({
     {
       path: '/home',
       component: Home
-    },
-    {
-      path: '/addshop',
-      component: AddShop
     },
     {
       path: '/addstore',

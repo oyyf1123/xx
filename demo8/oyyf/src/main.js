@@ -21,7 +21,23 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   Upload,
-  Button
+  Button,
+  Form,
+  FormItem,
+  Input,
+  Select,
+  Option,
+  Col,
+  DatePicker,
+  TimePicker,
+  Switch,
+  CheckboxGroup,
+  Checkbox,
+  RadioGroup,
+  Radio,
+  Cascader,
+  InputNumber,
+  TimeSelect,
 } from 'element-ui';
 
 
@@ -42,6 +58,22 @@ Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
 Vue.use(Upload)
 Vue.use(Button)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Col)
+Vue.use(DatePicker)
+Vue.use(TimePicker)
+Vue.use(Switch)
+Vue.use(CheckboxGroup)
+Vue.use(Checkbox)
+Vue.use(RadioGroup)
+Vue.use(Radio)
+Vue.use(Cascader)
+Vue.use(InputNumber)
+Vue.use(TimeSelect)
 
 Vue.config.productionTip = false
 

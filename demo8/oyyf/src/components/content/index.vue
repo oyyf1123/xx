@@ -33,9 +33,7 @@
             <el-menu-item index="2-1">
               <router-link tag="span" to="/addstore" active-class="active">添加商铺</router-link>
             </el-menu-item>
-            <el-menu-item index="2-2">
-              <router-link tag="span" to="/addshop" active-class="active">添加商品</router-link>
-            </el-menu-item>
+            
           </el-submenu>
 
           <el-submenu index="3">
