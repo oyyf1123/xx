@@ -3,7 +3,7 @@
     <el-container>
       <el-aside width="250px" style="background-color: rgb(50, 64, 87)">
         <el-menu>
-          <el-submenu index="0">
+          <el-menu-item index="0">
             <template slot="title">
               <i class="el-icon-menu"></i>
               <router-link
@@ -13,7 +13,7 @@
                 style="font-size:16px"
               >首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</router-link>
             </template>
-          </el-submenu>
+          </el-menu-item>
 
           <el-submenu index="1">
             <template slot="title">
@@ -96,7 +96,7 @@
             <img
               src="https://elm.cangdu.org/img/default.jpg"
               alt
-              style="height:36px;width:36px;margin-top:12px"
+              style="height:36px;width:36px;margin-top:12px;border-radius:50%"
             />
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>首页</el-dropdown-item>
@@ -142,6 +142,8 @@
 
 span {
   color: #bfcbd9;
+  display: inline-block;
+  /* width: 100%; */
 }
 
 .el-header {

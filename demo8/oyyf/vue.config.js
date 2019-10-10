@@ -16,5 +16,6 @@ module.exports = {
       .set( 'store' , resolve( 'src/store' ) )
       .set( 'utils' , resolve( 'src/utils' ) )
       .set( 'router' , resolve( 'src/router' ) )
+      .set( 'mock' , resolve( 'src/mock' ) )
   }
 };

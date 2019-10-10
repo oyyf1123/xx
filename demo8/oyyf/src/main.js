@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import axios from 'axios'
 import './layout/reset.css'
 import {
   Container,
@@ -18,7 +19,9 @@ import {
   Table,
   TableColumn,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Upload,
+  Button
 } from 'element-ui';
 
 
@@ -37,8 +40,15 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
+Vue.use(Upload)
+Vue.use(Button)
 
 Vue.config.productionTip = false
+
+//统一设置请求头 + 统一设置baseURL
+axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
 
 new Vue({
   router,
