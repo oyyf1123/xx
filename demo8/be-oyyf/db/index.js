@@ -25,7 +25,7 @@ const {
 // 3. 创建模型 Model
 
 // const userModel = mongoose.model( 集合名称【复数】,对应的骨架 )
-const userModel = mongoose.model('users', userSchema) // 很多人将集合名字没有写成复数
+const userModel = mongoose.model('yyfs', userSchema) // 很多人将集合名字没有写成复数
 
 const shopModel = mongoose.model('shops', shopSchema)
 
@@ -175,11 +175,29 @@ const db = {
 
                 shopModel.find({},( err,doc ) => {
                     var flag = doc.some( item => item.shop_id == data.shop_id )
-
-                    if ( flag ) {
-                        //成立，店铺已经注册过了
-                    } else {
+                    // console.log('flag',flag);
+                    if ( !flag ) {
                         //不成立，店铺没有注册过
+                        var shop = new shopModel(data)
+                        shop.save((err) => {
+                            if (err) {
+                                resolve({
+                                    info: '注册店铺失败',
+                                    status:1,
+                                })
+                            } else {
+                                resolve({
+                                    info: '你成功加入了我们！',
+                                    status:0,
+                                })
+                            }
+                        })
+                    } else {
+                        //成立，店铺已经注册过了
+                        resolve({
+                            info: '这个店铺已经加入了我们哦！',
+                            status:2
+                        })
                     }
 
                 })

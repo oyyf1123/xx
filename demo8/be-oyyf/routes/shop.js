@@ -7,7 +7,7 @@ const multer = require('multer')
 const path = require('path')
 
 router.route('/shop')
-  .post((res,req,next) => {
+  .post((req,res,next) => {
     res.send('发射')
   })
   .put()
