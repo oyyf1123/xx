@@ -2,7 +2,7 @@
   <div class="oyyf-box">
     <el-container>
       <el-aside width="250px" style="background-color: rgb(50, 64, 87)">
-        <el-menu>
+        <el-menu default-active="1-1">
           <el-menu-item index="0">
             <template slot="title">
               <i class="el-icon-menu"></i>
@@ -158,5 +158,22 @@ span {
 </style>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      config:[
+        {
+          title:'数据管理',
+          index:'menagedata',
+          children:[
+            {
+              title:'用户列表',
+              index:"useList"
+            }
+          ]
+        },
+      ]
+    }
+  },
+};
 </script>

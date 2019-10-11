@@ -7,7 +7,7 @@
 <script>
 import echarts from "echarts";
 import ajax from 'utils/ajax';
-
+import { TYPE, DATA_TYPE } from './mock'
 export default {
   data() {
     return {};
@@ -15,9 +15,9 @@ export default {
   async mounted() {
     var myChart = echarts.init(document.getElementById("main"));
 
-    const result = await ajax({
-        url:'/mock/demo1.json'
-    })
+    // const result = await ajax({
+    //     url:'mock/demo1.json'
+    // })
     // console.log(result);
     const option = {
       title: {
@@ -32,7 +32,7 @@ export default {
       legend: {
         orient: "vertical",
         left: "left",
-        data: ''
+        data: TYPE,
       },
       series: [
         {
@@ -40,13 +40,7 @@ export default {
           type: "pie",
           radius: "55%",
           center: ["50%", "60%"],
-          data: [
-            { value: 335, name: "直接访问" },
-            { value: 310, name: "邮件营销" },
-            { value: 234, name: "联盟广告" },
-            { value: 135, name: "视频广告" },
-            { value: 1548, name: "搜索引擎" }
-          ],
+          data: DATA_TYPE,
           itemStyle: {
             emphasis: {
               shadowBlur: 10,
