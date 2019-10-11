@@ -2,7 +2,12 @@
   <div class="oyyf-box">
     <el-container>
       <el-aside width="250px" style="background-color: rgb(50, 64, 87)">
+<<<<<<< HEAD
         <el-menu default-active="1-1">
+=======
+        <el-menu
+          default-active="2-1">
+>>>>>>> 1bc86703e7294091cd7f5e6e69fa2d3820e427ca
           <el-menu-item index="0">
             <template slot="title">
               <i class="el-icon-menu"></i>

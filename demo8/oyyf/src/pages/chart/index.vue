@@ -7,21 +7,30 @@
 <script>
 import echarts from "echarts";
 import ajax from 'utils/ajax';
+<<<<<<< HEAD
 import { TYPE, DATA_TYPE } from './mock'
+=======
+import {TYPE,TYPE_DATA} from 'pages/chart/chart.js'
+>>>>>>> 1bc86703e7294091cd7f5e6e69fa2d3820e427ca
 export default {
   data() {
     return {};
   },
   async mounted() {
     var myChart = echarts.init(document.getElementById("main"));
+<<<<<<< HEAD
 
     // const result = await ajax({
     //     url:'mock/demo1.json'
+=======
+    // const result = await ajax({
+    //     url:'/mock/demo1.json'
+>>>>>>> 1bc86703e7294091cd7f5e6e69fa2d3820e427ca
     // })
     // console.log(result);
     const option = {
       title: {
-        text: "某站点用户访问来源",
+        text: "商铺类型分布",
         // subtext: "纯属虚构",
         x: "center"
       },
@@ -31,16 +40,25 @@ export default {
       },
       legend: {
         orient: "vertical",
+<<<<<<< HEAD
         left: "left",
         data: TYPE,
+=======
+        left: "right",
+        data: TYPE
+>>>>>>> 1bc86703e7294091cd7f5e6e69fa2d3820e427ca
       },
       series: [
         {
-          name: "访问来源",
+          name: "店铺类型",
           type: "pie",
           radius: "55%",
           center: ["50%", "60%"],
+<<<<<<< HEAD
           data: DATA_TYPE,
+=======
+          data: TYPE_DATA,
+>>>>>>> 1bc86703e7294091cd7f5e6e69fa2d3820e427ca
           itemStyle: {
             emphasis: {
               shadowBlur: 10,
