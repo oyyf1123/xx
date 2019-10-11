@@ -7,25 +7,15 @@
 <script>
 import echarts from "echarts";
 import ajax from 'utils/ajax';
-<<<<<<< HEAD
-import { TYPE, DATA_TYPE } from './mock'
-=======
 import {TYPE,TYPE_DATA} from 'pages/chart/chart.js'
->>>>>>> 1bc86703e7294091cd7f5e6e69fa2d3820e427ca
 export default {
   data() {
     return {};
   },
   async mounted() {
     var myChart = echarts.init(document.getElementById("main"));
-<<<<<<< HEAD
-
-    // const result = await ajax({
-    //     url:'mock/demo1.json'
-=======
     // const result = await ajax({
     //     url:'/mock/demo1.json'
->>>>>>> 1bc86703e7294091cd7f5e6e69fa2d3820e427ca
     // })
     // console.log(result);
     const option = {
@@ -40,13 +30,8 @@ export default {
       },
       legend: {
         orient: "vertical",
-<<<<<<< HEAD
-        left: "left",
-        data: TYPE,
-=======
         left: "right",
         data: TYPE
->>>>>>> 1bc86703e7294091cd7f5e6e69fa2d3820e427ca
       },
       series: [
         {
@@ -54,11 +39,7 @@ export default {
           type: "pie",
           radius: "55%",
           center: ["50%", "60%"],
-<<<<<<< HEAD
-          data: DATA_TYPE,
-=======
           data: TYPE_DATA,
->>>>>>> 1bc86703e7294091cd7f5e6e69fa2d3820e427ca
           itemStyle: {
             emphasis: {
               shadowBlur: 10,
