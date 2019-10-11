@@ -7,21 +7,20 @@
 <script>
 import echarts from "echarts";
 import ajax from 'utils/ajax';
-
+import {TYPE,TYPE_DATA} from 'pages/chart/chart.js'
 export default {
   data() {
     return {};
   },
   async mounted() {
     var myChart = echarts.init(document.getElementById("main"));
-
-    const result = await ajax({
-        url:'/mock/demo1.json'
-    })
+    // const result = await ajax({
+    //     url:'/mock/demo1.json'
+    // })
     // console.log(result);
     const option = {
       title: {
-        text: "某站点用户访问来源",
+        text: "商铺类型分布",
         // subtext: "纯属虚构",
         x: "center"
       },
@@ -31,22 +30,16 @@ export default {
       },
       legend: {
         orient: "vertical",
-        left: "left",
-        data: ''
+        left: "right",
+        data: TYPE
       },
       series: [
         {
-          name: "访问来源",
+          name: "店铺类型",
           type: "pie",
           radius: "55%",
           center: ["50%", "60%"],
-          data: [
-            { value: 335, name: "直接访问" },
-            { value: 310, name: "邮件营销" },
-            { value: 234, name: "联盟广告" },
-            { value: 135, name: "视频广告" },
-            { value: 1548, name: "搜索引擎" }
-          ],
+          data: TYPE_DATA,
           itemStyle: {
             emphasis: {
               shadowBlur: 10,

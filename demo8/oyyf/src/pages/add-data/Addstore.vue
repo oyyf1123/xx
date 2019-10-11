@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="store-box">
     <el-form
       :model="ruleForm"
       :rules="rules"
@@ -68,35 +68,10 @@
         ></el-time-select>
       </el-form-item>
 
-      <el-form-item label="上传店铺头像">
-        <el-upload
-          class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList2"
-          list-type="picture"
-        >
-          <el-button size="small" type="primary">点击上传</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-        </el-upload>
-      </el-form-item>
-
-      <el-form-item label="上传营业执照">
-        <el-upload
-          class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList2"
-          list-type="picture"
-        >
-          <el-button size="small" type="primary">点击上传</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-        </el-upload>
-      </el-form-item>
-
-      <el-form-item label="上传餐饮服务许可证">
+      <el-form-item
+        v-for="photoItem in photo"
+        :key="photoItem.id" 
+        :label="photoItem.text">
         <el-upload
           class="upload-demo"
           action="https://jsonplaceholder.typicode.com/posts/"
@@ -273,6 +248,20 @@ export default {
       startTime: "",
       endTime: "",
       fileList2: [],
+      photo:[
+        {
+          id:1,
+          text:'上传店铺头像'
+        },
+        {
+          id:2,
+          text:'上传营业执照'
+        },
+        {
+          id:3,
+          text:'上传餐饮服务许可证'
+        },
+      ],
       // selectedOptions2: [],
 
       rules: {
@@ -321,6 +310,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.store-box
+  width 60%
+  margin 0 auto
+
 .trait-box {
   display: inline-block;
 
