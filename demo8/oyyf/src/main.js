@@ -38,9 +38,10 @@ import {
   Cascader,
   InputNumber,
   TimeSelect,
+  Dialog,
 } from 'element-ui';
 
-
+Vue.use(Dialog)
 Vue.use(Container)
 Vue.use(Aside)
 Vue.use(Menu)
@@ -76,7 +77,7 @@ Vue.use(InputNumber)
 Vue.use(TimeSelect)
 
 Vue.config.productionTip = false
-
+Vue.prototype.$http = axios;
 //统一设置请求头 + 统一设置baseURL
 axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
