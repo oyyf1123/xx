@@ -8,14 +8,13 @@ const mongoose = require( 'mongoose' )
         */
 
 const shopSchema = new mongoose.Schema({
-    shop_id: String,
     shop_name: String,
-    shop_address: String,
-    shop_phone: String,
-    shop_info: String,
+    shop_site: String,
+    shop_tel: String,
+    shop_intro: String,
     shop_slogan: String,
     shop_category: String,
-    shop_feature: String,
+    shop_features: String,
     shop_delivery_cost: Number,
     shop_mini_deli_amount: Number,
     shop_start_time: String,

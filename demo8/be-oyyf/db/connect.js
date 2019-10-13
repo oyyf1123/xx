@@ -3,7 +3,7 @@
 */
 
 const mongoose = require( 'mongoose' )
-const DBNAME = oyyf
+const DBNAME = 'oyyf'
 
 // mongoose.connect( 数据库地址，错误优先的回调函数)
 // 数据库地址构成;   mongodb://127.0.0.1:27017/数据库名称
