@@ -81,7 +81,7 @@
 
       <el-form-item v-for="photoItem in photo" :key="photoItem.id" :label="photoItem.text">
 
-        <el-upload action="#" list-type="picture-card" :auto-upload="false" :name="photo.name">
+        <el-upload action="#" list-type="picture-card" :auto-upload="false" :name="photoItem.name">
           <i slot="default" class="el-icon-plus"></i>
           <div slot="file" slot-scope="{file}">
             <img class="el-upload-list__item-thumbnail" :src="file.url" alt />
