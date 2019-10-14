@@ -41,10 +41,11 @@ import {
   Dialog,
   MessageBox,
   Message,
+  Popover,
 } from 'element-ui';
 
 
-
+Vue.use(Popover)
 Vue.use(Dialog)
 Vue.use(Container)
 Vue.use(Aside)
