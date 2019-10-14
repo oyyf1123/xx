@@ -13,7 +13,7 @@ const shopSchema = new mongoose.Schema({
     shop_tel: String,
     shop_intro: String,
     shop_slogan: String,
-    shop_category: String,
+    shop_categorys: String,
     shop_features: String,
     shop_delivery_cost: Number,
     shop_mini_deli_amount: Number,

@@ -43,7 +43,7 @@ router.route('/shop')
     // console.log(req.filename); //传古来的图片
     // console.log(req.body); //接收前端传过来的数据 
     var data = Object.assign({}, req.body, req.filename);
-    console.log('req.filename',req.filename);
+    // console.log('req.filename',req.filename);
     console.log('data',data);
     const result = await db.shop.add(data);
     
@@ -55,7 +55,26 @@ router.route('/shop')
     })
   })
   .put()
-  .delete()
-  .get()
+  .delete(async (req, res, next) => {
+    const { _id } = req.query // 接收前端发来的_id参数
+      const result = await db.shop.del( _id )
+      res.render('shop',{
+          data: JSON.stringify({
+              info: result.info,
+              status: result.status,
+              data: result.data
+          })
+      })
+  } )
+  .get(async (req, res, next) => {
+    const result = await db.shop.query()
+    res.render('shop', {
+      data: JSON.stringify({
+        info: result.info,
+        status: result.status,
+        data:result.data,
+      })
+    })
+  })
 
 module.exports = router

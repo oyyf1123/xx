@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from 'store'
 import axios from 'axios'
 import './layout/reset.css'
 import {
@@ -39,7 +39,11 @@ import {
   InputNumber,
   TimeSelect,
   Dialog,
+  MessageBox,
+  Message,
 } from 'element-ui';
+
+
 
 Vue.use(Dialog)
 Vue.use(Container)
@@ -75,6 +79,10 @@ Vue.use(Radio)
 Vue.use(Cascader)
 Vue.use(InputNumber)
 Vue.use(TimeSelect)
+
+
+Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios;

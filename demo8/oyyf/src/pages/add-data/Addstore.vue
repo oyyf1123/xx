@@ -31,7 +31,7 @@
       </el-form-item>
 
       <el-form-item label="店铺分类" prop="category">
-        <el-cascader :options="options" v-model="selectedOptions" name="shop_category"></el-cascader>
+        <el-cascader :options="options" v-model="selectedOptions" name="shop_categorys" @change="cateHandler"></el-cascader>
       </el-form-item>
 
       <el-form-item label="店铺特点" prop="feature" style="width:450px;">
@@ -80,8 +80,7 @@
       </el-form-item>
 
       <el-form-item v-for="photoItem in photo" :key="photoItem.id" :label="photoItem.text">
-
-        <el-upload action="#" list-type="picture-card" :auto-upload="false" :name="photo.name">
+        <el-upload action="#" list-type="picture-card" :auto-upload="false" :name="photoItem.name">
           <i slot="default" class="el-icon-plus"></i>
           <div slot="file" slot-scope="{file}">
             <img class="el-upload-list__item-thumbnail" :src="file.url" alt />
@@ -120,6 +119,7 @@
 
 
 <script>
+// import ajax from "utils/ajax.js";
 import API from "api";
 export default {
   data() {
@@ -132,7 +132,8 @@ export default {
         slogan: "",
         delivery: false,
         type: [],
-        url: ""
+        url: "",
+        categorys:"",
       },
       // url: "",
       trait: [
@@ -324,11 +325,52 @@ export default {
     submitForm() {
       const tempForm = document.querySelector(".demo-ruleForm");
       var formData = new FormData(tempForm);
+      formData.append("shop_categorys", this.selectedOptions);
+
+      var arr = [];
+
+      this.trait.map((item, index) => {
+        arr.push(item.flag);
+      });
+
+      formData.append("shop_features", JSON.stringify(arr));
+
+      var _this = this;
+
       this.$http({
         url: API.shop,
         method: "post",
         data: formData
-      }).then(res => console.log(res));
+      }).then(res => {
+        var tempSign = res.data;
+        console.log(tempSign.status);
+        // var result = JSON.parse( tempSign ) //格式化获取的数据
+        switch (tempSign.status) {
+          case 0:
+            _this.$message("正在跳转店铺列表页面...");
+            setTimeout(function() {
+              _this.$router.push("/menagedata");
+            }, 3000);
+            break;
+          case 2:
+            _this.$alert("此店铺已存在，请确认后重新添加", "重复添加", {
+              confirmButtonText: "确定"
+            });
+            break;
+          case 1:
+            // 1表示添加失败
+            _this.$alert("服务器或是操作有误，请您重新添加", "添加失败", {
+              confirmButtonText: "确定"
+            });
+            break;
+
+          default:
+            break;
+        }
+      });
+    },
+    cateHandler(val) {
+      this.categorys = val;
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();

@@ -204,8 +204,37 @@ const db = {
 
             })
         },
-        del() {
-
+        del(_id) {
+            return new Promise(( resolve,reject ) => {
+                // 1. 从数据库删除一条数据
+                // 2. 将删除后的数据返回给前端
+                shopModel.findById( _id, ( err,doc ) => {
+                    if ( err ) {
+                        resolve({
+                            info: '查询失败了',
+                            status: 0
+                        })
+                    } else {
+                        doc.remove( error => {
+                            if ( error ) {
+                                resolve({
+                                    info: '删除失败' + error,
+                                    status: 1
+                                })
+                            } else {
+                                //删除成功
+                                shopModel.find({},( e, res ) => {
+                                    resolve({
+                                        info: '删除成功',
+                                        status: 2,
+                                        data: res
+                                    })
+                                })
+                            }
+                        })
+                    }
+                })
+            })
         },
         modify() {
 
@@ -216,12 +245,13 @@ const db = {
                     if (err) {
                         resolve({
                             indo: '查询失败',
-                            status: 0,
+                            status: 1,
                         })
                     } else {
                         resolve({
                             resolve: '查询成功',
-                            status: 1,
+                            status: 0,
+                            data:doc,
                         })
                     }
                 })
