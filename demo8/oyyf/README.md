@@ -1,29 +1,5 @@
 # oyyf
 
-## Project setup
-```
-yarn install
-```
+## 这是一个后台管理系统
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 目前具有添加 删除 功能
