@@ -159,5 +159,22 @@ span {
 </style>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      config:[
+        {
+          title:'数据管理',
+          index:'menagedata',
+          children:[
+            {
+              title:'用户列表',
+              index:"useList"
+            }
+          ]
+        },
+      ]
+    }
+  },
+};
 </script>
